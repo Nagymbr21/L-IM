@@ -82,7 +82,7 @@ h1{text-align:center;margin:0 0 20px;font-weight:700;letter-spacing:0.4px}
 #money-list li::before{content:'';position:absolute;left:8px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#ffb84a);box-shadow:0 4px 8px rgba(0,0,0,0.4)}
 
 /* Subtle animated background shimmer */
-body::after{content:'';position:fixed;inset:0;z-index:0;background:linear-gradient(120deg, rgba(255,255,255,0.02), transparent 20%, rgba(255,255,255,0.01));mix-blend-mode:overlay;animation: shimmer 8s linear infinite}
+body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,255,255,0.02), transparent 20%, rgba(255,255,255,0.01));mix-blend-mode:overlay;animation: shimmer 8s linear infinite}
 @keyframes shimmer{0%{transform:translateX(-20%)}50%{transform:translateX(20%)}100%{transform:translateX(-20%)}}
 
 /* Slight entrance animation for question card */
