@@ -1,0 +1,23 @@
+:root{--bg:#0b1530;--card:#0f2348;--accent:#ffd24a;--muted:#9fb0d6}
+*{box-sizing:border-box;font-family:Segoe UI,Roboto,Arial,sans-serif}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071029);color:#eaf2ff}
+.container{max-width:1000px;margin:28px auto;padding:20px}
+h1{text-align:center;margin:0 0 18px}
+.center{text-align:center}
+.hidden{display:none}
+.top-row{display:flex;gap:20px}
+#question-area{flex:1;background:var(--card);padding:18px;border-radius:8px}
+#question{font-size:1.2rem;margin-bottom:12px}
+#choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{padding:12px;background:#12305a;border-radius:6px;border:1px solid rgba(255,255,255,0.05);cursor:pointer}
+.choice.disabled{opacity:.5;pointer-events:none}
+.choice.correct{background:green}
+.choice.wrong{background:#7a2430}
+#ladder{width:220px;background:var(--card);padding:10px;border-radius:8px}
+#money-list{list-style:none;padding:0;margin:0}
+#money-list li{padding:6px 8px;border-radius:4px;color:var(--muted)}
+#money-list li.current{background:rgba(255,210,74,0.12);color:var(--accent);font-weight:700}
+.controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.lifeline .lifeline{margin-right:8px}
+.primary{padding:12px 18px;background:var(--accent);border:none;border-radius:6px;color:#042034;font-weight:700;cursor:pointer}
+#status{font-size:.95rem;color:var(--muted)}

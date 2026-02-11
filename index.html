@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Legyen Ön is milliomos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Legyen Ön is milliomos!</h1>
+
+    <section id="game">
+      <div id="start-screen" class="center">
+        <button id="start-btn" class="primary">Játék indítása</button>
+      </div>
+
+      <div id="play-screen" class="hidden">
+        <div class="top-row">
+          <div id="question-area">
+            <div id="question">Kérdés szövege</div>
+            <div id="choices"></div>
+          </div>
+          <aside id="ladder">
+            <ul id="money-list"></ul>
+          </aside>
+        </div>
+
+        <div class="controls">
+          <div class="lifelines">
+            <button id="lifeline-50" class="lifeline">50:50</button>
+          </div>
+          <div id="status">Tippelj helyes választ!</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
