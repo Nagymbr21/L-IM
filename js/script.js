@@ -126,24 +126,7 @@ function updateLadder() {
   });
 }
 
-function use5050() {
-  if (used5050) return;
-  used5050 = true;
-  lifeline50.disabled = true;
-
-  const q = gameQuestions[current];
-  const incorrect = q.a.map((_, i) => i).filter((i) => i !== q.correct);
-  shuffleArray(incorrect);
-  const toRemove = incorrect.slice(0, 2);
-
-  [...choicesEl.children].forEach((b) => {
-    if (toRemove.includes(+b.dataset.orig)) {
-      b.classList.add('disabled');
-      b.disabled = true;
-      b.setAttribute('aria-hidden', 'true');
-    }
-  });
-}
+// removed 50:50 lifeline — function cleaned up
 
 function endGame(won){
   if(won) statusEl.textContent = 'Gratulálok — végigértél!';
@@ -172,7 +155,16 @@ function animateElement(el) {
   el.addEventListener('animationend', onEnd);
 }
 
-startBtn.addEventListener('click', startGame);
-// init UI on load
-init();
+// Attach handlers after DOM is ready to avoid timing issues
+if (startBtn) {
+  startBtn.addEventListener('click', startGame);
+  // init UI on load
+  init();
+} else {
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('start-btn');
+    if (btn) btn.addEventListener('click', startGame);
+    init();
+  });
+}
 
