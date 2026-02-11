@@ -74,9 +74,9 @@ function selectAnswer(idx, btn) {
   disableChoices(true);
   const q = questions[current];
   const isCorrect = q.correct === idx;
-
   if (isCorrect) {
     btn.classList.add('correct');
+    animateElement(btn);
     showStatus('Helyes!');
     setTimeout(() => {
       current++;
@@ -92,8 +92,12 @@ function selectAnswer(idx, btn) {
 
   // wrong answer
   btn.classList.add('wrong');
+  animateElement(btn);
   const correctBtn = [...choicesEl.children].find((b) => +b.dataset.idx === q.correct);
-  if (correctBtn) correctBtn.classList.add('correct');
+  if (correctBtn) {
+    correctBtn.classList.add('correct');
+    animateElement(correctBtn);
+  }
   showStatus('Rossz válasz — vége.');
   setTimeout(() => endGame(false), 1000);
 }
@@ -146,6 +150,16 @@ function shuffleArray(arr) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+}
+
+function animateElement(el) {
+  if (!el) return;
+  el.classList.add('reveal');
+  const onEnd = () => {
+    el.classList.remove('reveal');
+    el.removeEventListener('animationend', onEnd);
+  };
+  el.addEventListener('animationend', onEnd);
 }
 
 startBtn.addEventListener('click', startGame);
