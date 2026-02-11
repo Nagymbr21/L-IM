@@ -66,3 +66,26 @@ h1{text-align:center;margin:0 0 20px;font-weight:700;letter-spacing:0.4px}
 	40%, 60% { transform: translateX(4px); }
 	100% { transform: translateX(0); }
 }
+
+/* Decorative header and container accents */
+.container{position:relative;overflow:visible}
+.container::before,
+.container::after{content:'';position:absolute;pointer-events:none;border-radius:50%;opacity:0.12}
+.container::before{width:260px;height:260px;right:-60px;top:-80px;background:radial-gradient(circle at 30% 30%, rgba(255,210,74,0.25), transparent)}
+.container::after{width:180px;height:180px;left:-40px;bottom:-80px;background:radial-gradient(circle at 70% 70%, rgba(46,204,113,0.12), transparent)}
+
+.crown{display:inline-block;vertical-align:middle;margin-right:10px;transform:translateY(2px)}
+.subtitle{margin:8px 0 18px;text-align:center;color:rgba(234,242,255,0.8);font-size:0.98rem}
+
+/* Ladder decorative dots */
+#money-list li{position:relative;padding-left:34px}
+#money-list li::before{content:'';position:absolute;left:8px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#ffb84a);box-shadow:0 4px 8px rgba(0,0,0,0.4)}
+
+/* Subtle animated background shimmer */
+body::after{content:'';position:fixed;inset:0;z-index:0;background:linear-gradient(120deg, rgba(255,255,255,0.02), transparent 20%, rgba(255,255,255,0.01));mix-blend-mode:overlay;animation: shimmer 8s linear infinite}
+@keyframes shimmer{0%{transform:translateX(-20%)}50%{transform:translateX(20%)}100%{transform:translateX(-20%)}}
+
+/* Slight entrance animation for question card */
+#question-area{transform-origin:top center;animation: cardIn 420ms cubic-bezier(.2,.8,.2,1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+
