@@ -14,7 +14,7 @@ const questions = [
 const money = ['100','200','300','500','1 000','2 000','4 000','8 000','16 000','32 000'];
 
 let current = 0;
-let used5050 = false;
+let gameQuestions = [];
 
 // Elements
 const startBtn = document.getElementById('start-btn');
@@ -24,7 +24,6 @@ const questionEl = document.getElementById('question');
 const choicesEl = document.getElementById('choices');
 const moneyList = document.getElementById('money-list');
 const statusEl = document.getElementById('status');
-const lifeline50 = document.getElementById('lifeline-50');
 
 function init() {
   // populate ladder (highest first)
@@ -40,30 +39,41 @@ function init() {
 function startGame(){
   startScreen.classList.add('hidden');
   playScreen.classList.remove('hidden');
-  current = 0; used5050 = false; lifeline50.disabled = false;
+  current = 0;
+
+  // prepare randomized question order for this play session
+  gameQuestions = questions.slice();
+  shuffleArray(gameQuestions);
+
   init();
   showQuestion();
 }
 
 function showQuestion() {
-  const q = questions[current];
+  const q = gameQuestions[current];
   questionEl.textContent = q.q;
   choicesEl.innerHTML = '';
 
   q.a.forEach((txt, i) => {
+    // create shuffled choice objects that keep original index
+  });
+
+  const choices = q.a.map((txt, i) => ({ txt, idx: i }));
+  shuffleArray(choices);
+  choices.forEach((choice, i) => {
     const btn = document.createElement('button');
     btn.className = 'choice';
     btn.type = 'button';
-    const label = String.fromCharCode(65 + i); // A, B, C, D
-    btn.textContent = `${label}. ${txt}`;
-    btn.dataset.idx = i;
-    btn.setAttribute('aria-label', `Válasz ${label}: ${txt}`);
-    btn.addEventListener('click', () => selectAnswer(i, btn));
+    const label = String.fromCharCode(65 + i); // displayed label A, B, C, D
+    btn.textContent = `${label}. ${choice.txt}`;
+    btn.dataset.orig = choice.idx; // original index to compare with q.correct
+    btn.setAttribute('aria-label', `Válasz ${label}: ${choice.txt}`);
+    btn.addEventListener('click', () => selectAnswer(choice.idx, btn));
     choicesEl.appendChild(btn);
   });
 
   updateLadder();
-  showStatus(`Kérdés ${current + 1}/${questions.length}`);
+  showStatus(`Kérdés ${current + 1}/${gameQuestions.length}`);
 }
 
 function showStatus(text) {
@@ -72,7 +82,7 @@ function showStatus(text) {
 
 function selectAnswer(idx, btn) {
   disableChoices(true);
-  const q = questions[current];
+  const q = gameQuestions[current];
   const isCorrect = q.correct === idx;
   if (isCorrect) {
     btn.classList.add('correct');
@@ -80,7 +90,7 @@ function selectAnswer(idx, btn) {
     showStatus('Helyes!');
     setTimeout(() => {
       current++;
-      if (current >= questions.length) endGame(true);
+      if (current >= gameQuestions.length) endGame(true);
       else {
         init();
         showQuestion();
@@ -93,7 +103,7 @@ function selectAnswer(idx, btn) {
   // wrong answer
   btn.classList.add('wrong');
   animateElement(btn);
-  const correctBtn = [...choicesEl.children].find((b) => +b.dataset.idx === q.correct);
+    const correctBtn = [...choicesEl.children].find((b) => +b.dataset.orig === q.correct);
   if (correctBtn) {
     correctBtn.classList.add('correct');
     animateElement(correctBtn);
@@ -121,13 +131,13 @@ function use5050() {
   used5050 = true;
   lifeline50.disabled = true;
 
-  const q = questions[current];
+  const q = gameQuestions[current];
   const incorrect = q.a.map((_, i) => i).filter((i) => i !== q.correct);
   shuffleArray(incorrect);
   const toRemove = incorrect.slice(0, 2);
 
   [...choicesEl.children].forEach((b) => {
-    if (toRemove.includes(+b.dataset.idx)) {
+    if (toRemove.includes(+b.dataset.orig)) {
       b.classList.add('disabled');
       b.disabled = true;
       b.setAttribute('aria-hidden', 'true');
@@ -163,7 +173,6 @@ function animateElement(el) {
 }
 
 startBtn.addEventListener('click', startGame);
-lifeline50.addEventListener('click', use5050);
-
 // init UI on load
 init();
+
