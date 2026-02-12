@@ -13,11 +13,21 @@ const questions = [
   {q: 'Melyik kontinensen található Magyarország?', a:['Afrika','Ázsia','Ausztrália','Európa'], correct:3},
   {q: 'Mi Magyarország fővárosa?', a:['Bukarest','Budapest','Szolnok','Sopron'], correct:1},
   {q: 'Melyik ország nem Magyarország szomszédja?', a:['Szerbia','Ukrajna','Lengyelország','Szlovénia'], correct:2},
-  {q: 'Mennyi 5×5?', a:['25','13','20','68'], correct:0},
+  {q: 'Mennyi 5 × 5?', a:['25','13','20','68'], correct:0},
   {q: 'Ha 13 éves vagy akkor mikor születtél?', a:['2012','2010','2019','2013'], correct:3},
   {q: 'Ki Shrek párja?', a:['Hamupipőke','Fióna','Csipkerózsika','Ariel'], correct:1},
   {q: 'Hányat lép egy veréb egy évben?', a:['100.000','500.000','Semennyit','10.000'], correct:2},
-  {q: 'Az alábbi állatok közül melyik hüllő?', a:['Cápa','Kaméleon','Gólya','Kutya'], correct:1}
+  {q: 'Az alábbi állatok közül melyik hüllő?', a:['Cápa','Kaméleon','Gólya','Kutya'], correct:1},
+  {q: 'Melyik kontinensen található az Amazonas őserdő?', a:['Afrika','Ázsia','Dél-Amerika','Európa'], correct:2},
+  {q: 'Mennyi 8 × 7?', a:['54','56','48','64'], correct:1},
+  {q: 'Melyik korban építették a piramisokat?', a:['Középkor','Újkor','Ókor','Jövőkor'], correct:2},
+  {q: 'Melyik gáz szükséges leginkább a légzéshez?', a:['Szén-dioxid','Oxigén','Hidrogén','Hélium'], correct:1},
+  {q: 'Melyik anyag vezeti legjobban az elektromos áramot?', a:['Fa','Műanyag','Vas','Réz'], correct:3},
+  {q: 'Ki írta a János vitéz című művet?', a:['Arany János','Petőfi Sándor','Móra Ferenc','Mikszáth Kálmán'], correct:1},
+  {q: 'Melyik ország fővárosa Róma?', a:['Franciaország','Spanyolország','Olaszország','Görögország'], correct:2},
+  {q: 'Mennyi 144 osztva 12-vel?', a:['10','11','12','14'], correct:2},
+  {q: 'Melyik csoportba tartozik a béka?', a:['Hüllők','Kétéltűek','Emlősök','Halak'], correct:1},
+  {q: 'Ki volt a „legnagyobb magyar”?', a:['Kossuth Lajos','Széchenyi István','Rákoczi Ferenc','Deák Ferenc'], correct:1}
 ];
 
 const money = ['1 000','3 000','6 000','12 000','20 000','25 000','30 000','40 000','45 000','50 000'];
