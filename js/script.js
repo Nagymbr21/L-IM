@@ -36,6 +36,7 @@ const MAX_QUESTIONS = 10;
 
 let current = 0;
 let gameQuestions = [];
+let _hasShownQuestion = false;
 
 // Elements
 const startBtn = document.getElementById('start-btn');
@@ -108,37 +109,60 @@ function startGame(){
 
 function showQuestion() {
   const q = gameQuestions[current];
-  // keep the question only in the header; clear the in-card question area
-  if (questionEl) questionEl.textContent = '';
-  // also show the question in the page header where the title was
-  setHeaderQuestion(q.q);
-  choicesEl.innerHTML = '';
+  const questionArea = document.getElementById('question-area');
 
-  q.a.forEach((txt, i) => {
-    // create shuffled choice objects that keep original index
-  });
+  const render = () => {
+    if (questionEl) questionEl.textContent = '';
+    setHeaderQuestion(q.q);
+    choicesEl.innerHTML = '';
 
-  const choices = q.a.map((txt, i) => ({ txt, idx: i }));
-  shuffleArray(choices);
-  choices.forEach((choice, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'choice';
-    btn.type = 'button';
-    const label = String.fromCharCode(65 + i); // displayed label A, B, C, D
-    btn.textContent = `${label}. ${choice.txt}`;
-    btn.dataset.orig = choice.idx; // original index to compare with q.correct
-    btn.setAttribute('aria-label', `Válasz ${label}: ${choice.txt}`);
-    btn.addEventListener('click', () => {
-      // highlight the pressed answer to make it more visible
-      [...choicesEl.children].forEach((b) => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectAnswer(choice.idx, btn);
+    const choices = q.a.map((txt, i) => ({ txt, idx: i }));
+    shuffleArray(choices);
+    choices.forEach((choice, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.type = 'button';
+      const label = String.fromCharCode(65 + i); // displayed label A, B, C, D
+      btn.textContent = `${label}. ${choice.txt}`;
+      btn.dataset.orig = choice.idx; // original index to compare with q.correct
+      btn.setAttribute('aria-label', `Válasz ${label}: ${choice.txt}`);
+      btn.addEventListener('click', () => {
+        [...choicesEl.children].forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectAnswer(choice.idx, btn);
+      });
+      choicesEl.appendChild(btn);
     });
-    choicesEl.appendChild(btn);
-  });
 
-  updateLadder();
-  showStatus(`Kérdés ${current + 1}/${MAX_QUESTIONS}`);
+    updateLadder();
+    showStatus(`Kérdés ${current + 1}/${MAX_QUESTIONS}`);
+
+    // enter animation
+    if (questionArea) {
+      questionArea.classList.remove('transition-exit');
+      questionArea.classList.add('transition-enter');
+      const onEnterEnd = () => {
+        questionArea.classList.remove('transition-enter');
+        questionArea.removeEventListener('animationend', onEnterEnd);
+      };
+      questionArea.addEventListener('animationend', onEnterEnd);
+    }
+
+    _hasShownQuestion = true;
+  };
+
+  // if we've shown a question before, animate exit then render the new one
+  if (_hasShownQuestion && questionArea) {
+    questionArea.classList.remove('transition-enter');
+    questionArea.classList.add('transition-exit');
+    const onExitEnd = () => {
+      questionArea.removeEventListener('animationend', onExitEnd);
+      render();
+    };
+    questionArea.addEventListener('animationend', onExitEnd);
+  } else {
+    render();
+  }
 }
 
 function showStatus(text) {
