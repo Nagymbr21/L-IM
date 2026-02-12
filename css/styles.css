@@ -11,7 +11,7 @@
 }
 
 *{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
-html,body{height:100%;margin:0;background:radial-gradient(1000px 400px at 10% 10%, rgba(255,210,74,0.03), transparent), linear-gradient(180deg,var(--bg),#041022);color:#eaf2ff}
+html,body{height:100%;margin:0;background:radial-gradient(1000px 400px at 10% 10%, rgba(255,210,74,0.03), transparent), linear-gradient(180deg,var(--bg),#041022);color:#ffffff}
 .container{max-width:1100px;margin:36px auto;padding:24px}
 h1{text-align:center;margin:0 0 20px;font-weight:700;letter-spacing:0.4px}
 
