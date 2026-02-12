@@ -4,10 +4,10 @@ const questions = [
   {q: 'Melyik állat ugat?', a:['Macska','Kutya','Hal','Madár'], correct:1},
   {q: 'Melyik a Disney mese?', a:['A lármás család','Alvin és a mókusok','Katicabogár','Gumball csodálatos világa'], correct:2},
   {q: 'Melyik évszakban hullanak a levelek?', a:['Tavasz','Tél','Ősz','Nyár'], correct:2},
-  {q: 'Mi az elektron töltése?', a:['Pozitív','Negatív','Semleges','Változó'], correct:1},
-  {q: 'Melyik bolygó a Naprendszer legnagyobb bolygója?', a:['Föld','Vénusz','Jupiter','Mars'], correct:2},
-  {q: 'Mi a magyar nemzeti ünnep augusztus 20-án?', a:['Nemzeti összetartozás napja','Az államalapítás ünnepe','Forradalom évfordulója','Szabadság napja'], correct:1},
-  {q: 'Melyik a legkisebb egész szám?', a:['-1','0','1','2'], correct:0},
+  {q: 'Ha egy kakas tojást tojik a tetőre az merre gurul el?', a:['Jobbra','Balra','Előre','Sehová'], correct:3},
+  {q: 'Mi nehezebb 1 kg toll vagy 1 kg vas?', a:['Toll','Egyenlő','Attól függ','Vas'], correct:1},
+  {q: 'Melyik állat tud úszni és repülni is?', a:['Pingvin','Strucc','Gólya','Kacsa'], correct:3},
+  {q: 'Melyik hónapba van 28 nap?', a:['Február','Június','December','Minden hónapban'], correct:0},
   {q: 'Mi az alapanyag a kenyér készítéséhez?', a:['Cukor','Liszt','Só','Vaj'], correct:1}
 ];
 
