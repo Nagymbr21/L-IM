@@ -42,17 +42,22 @@ function setHeaderQuestion(text) {
   if (!headerEl) return;
   if (!headerOriginalHTML) headerOriginalHTML = headerEl.innerHTML;
   const crown = headerEl.querySelector('.crown');
-  let span = headerEl.querySelector('#header-question');
-  if (!span) {
-    span = document.createElement('span');
-    span.id = 'header-question';
-    span.style.marginLeft = '8px';
-    span.style.verticalAlign = 'middle';
-    if (crown) crown.after(span);
-    else headerEl.appendChild(span);
-  }
-  span.textContent = text;
+  const crownHtml = crown ? crown.outerHTML : '';
+  const span = `<span id="header-question" style="margin-left:8px;vertical-align:middle">${escapeHtml(
+    text
+  )}</span>`;
+  headerEl.innerHTML = crownHtml + span;
   headerEl.classList.add('game-header');
+}
+
+// small helper to escape HTML in dynamic text
+function escapeHtml(str) {
+  if (typeof str !== 'string') return str;
+  return str.replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function restoreHeader() {
