@@ -153,13 +153,29 @@ function showQuestion() {
 
   // if we've shown a question before, animate exit then render the new one
   if (_hasShownQuestion && questionArea) {
+    console.log('showQuestion: playing exit animation for question', current);
     questionArea.classList.remove('transition-enter');
     questionArea.classList.add('transition-exit');
+    let handled = false;
     const onExitEnd = () => {
+      if (handled) return;
+      handled = true;
       questionArea.removeEventListener('animationend', onExitEnd);
+      console.log('showQuestion: exit animation ended');
       render();
     };
-    questionArea.addEventListener('animationend', onExitEnd);
+    // safety fallback: if animationend doesn't fire, render after 400ms
+    const fallback = setTimeout(() => {
+      if (handled) return;
+      handled = true;
+      questionArea.removeEventListener('animationend', onExitEnd);
+      console.warn('showQuestion: exit animation did not fire, using fallback render');
+      render();
+    }, 400);
+    questionArea.addEventListener('animationend', () => {
+      clearTimeout(fallback);
+      onExitEnd();
+    });
   } else {
     render();
   }

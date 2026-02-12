@@ -116,8 +116,8 @@ body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 @keyframes cardIn{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* Transition animations between questions */
-.transition-exit{animation: questionOut 320ms cubic-bezier(.2,.8,.2,1) forwards}
-.transition-enter{animation: questionIn 320ms cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes questionOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-12px) scale(.995)}}
-@keyframes questionIn{from{opacity:0;transform:translateY(12px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+.transition-exit{animation: questionOut 360ms cubic-bezier(.2,.8,.2,1) forwards}
+.transition-enter{animation: questionIn 360ms cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes questionOut{0%{opacity:1;transform:translateX(0) scale(1)}50%{opacity:0.6;transform:translateX(-30%) scale(.995)}100%{opacity:0;transform:translateX(-100%) scale(.99)}}
+@keyframes questionIn{0%{opacity:0;transform:translateX(100%) scale(.99)}60%{opacity:0.6;transform:translateX(30%) scale(.995)}100%{opacity:1;transform:translateX(0) scale(1)}}
 
