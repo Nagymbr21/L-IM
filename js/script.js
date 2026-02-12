@@ -98,7 +98,8 @@ function startGame(){
 
 function showQuestion() {
   const q = gameQuestions[current];
-  questionEl.textContent = q.q;
+  // keep the question only in the header; clear the in-card question area
+  if (questionEl) questionEl.textContent = '';
   // also show the question in the page header where the title was
   setHeaderQuestion(q.q);
   choicesEl.innerHTML = '';
@@ -185,6 +186,8 @@ function endGame(won){
     playScreen.classList.add('hidden');
     // restore original header/title
     restoreHeader();
+    // restore placeholder in the question card for the start screen
+    if (questionEl) questionEl.textContent = 'Kérdés szövege';
     startScreen.classList.remove('hidden');
   },1500);
 }
