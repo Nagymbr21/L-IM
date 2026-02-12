@@ -33,12 +33,24 @@ h1{text-align:center;margin:0 0 20px;font-weight:700;letter-spacing:0.4px}
 .choice.correct{background:linear-gradient(90deg, rgba(46,204,113,0.15), rgba(46,204,113,0.05));border-color:rgba(46,204,113,0.25);color:#ffffff}
 .choice.wrong{background:linear-gradient(90deg, rgba(231,76,60,0.12), rgba(231,76,60,0.04));border-color:rgba(231,76,60,0.2);color:#ffffff}
 
-/* Visual state when a user presses/clicks an answer */
-.choice.selected{
+/* Visual state when a user presses/clicks an answer (only before judgement) */
+.choice.selected:not(.correct):not(.wrong){
 	transform:translateY(-8px) scale(1.03);
 	box-shadow:0 20px 40px rgba(2,8,23,0.7);
 	border-color:rgba(255,210,74,0.28);
 	background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
+/* ensure correct/wrong colors take precedence */
+.choice.correct{
+	background:linear-gradient(90deg, rgba(46,204,113,0.22), rgba(46,204,113,0.08));
+	border-color:rgba(46,204,113,0.35);
+	color:#ffffff;
+}
+.choice.wrong{
+	background:linear-gradient(90deg, rgba(231,76,60,0.18), rgba(231,76,60,0.06));
+	border-color:rgba(231,76,60,0.32);
+	color:#ffffff;
 }
 #ladder{width:260px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:12px;height:fit-content;border:1px solid var(--glass)}
 #money-list{list-style:none;padding:8px;margin:0;display:flex;flex-direction:column-reverse;gap:6px}
