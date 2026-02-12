@@ -137,16 +137,23 @@ function selectAnswer(idx, btn) {
   if (isCorrect) {
     btn.classList.add('correct');
     animateElement(btn);
-    showStatus('Helyes!');
-    setTimeout(() => {
-      current++;
-      if (current >= gameQuestions.length) endGame(true);
-      else {
-        init();
-        showQuestion();
-        disableChoices(false);
+    showStatus('Helyes! Nyomd a szóközt a folytatáshoz');
+
+    // wait for Space key to continue to next question
+    const onSpace = (e) => {
+      if (e.code === 'Space' || e.key === ' ') {
+        document.removeEventListener('keydown', onSpace);
+        current++;
+        if (current >= gameQuestions.length) endGame(true);
+        else {
+          init();
+          showQuestion();
+          disableChoices(false);
+        }
       }
-    }, 900);
+    };
+    // attach listener
+    document.addEventListener('keydown', onSpace);
     return;
   }
 
