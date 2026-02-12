@@ -35,6 +35,34 @@ const questionEl = document.getElementById('question');
 const choicesEl = document.getElementById('choices');
 const moneyList = document.getElementById('money-list');
 const statusEl = document.getElementById('status');
+const headerEl = document.querySelector('main h1');
+let headerOriginalHTML = null;
+
+function setHeaderQuestion(text) {
+  if (!headerEl) return;
+  if (!headerOriginalHTML) headerOriginalHTML = headerEl.innerHTML;
+  const crown = headerEl.querySelector('.crown');
+  let span = headerEl.querySelector('#header-question');
+  if (!span) {
+    span = document.createElement('span');
+    span.id = 'header-question';
+    span.style.marginLeft = '8px';
+    span.style.verticalAlign = 'middle';
+    if (crown) crown.after(span);
+    else headerEl.appendChild(span);
+  }
+  span.textContent = text;
+  headerEl.classList.add('game-header');
+}
+
+function restoreHeader() {
+  if (!headerEl) return;
+  if (headerOriginalHTML !== null) {
+    headerEl.innerHTML = headerOriginalHTML;
+    headerOriginalHTML = null;
+  }
+  headerEl.classList.remove('game-header');
+}
 
 function init() {
   // populate ladder (highest first)
@@ -49,6 +77,7 @@ function init() {
 
 function startGame(){
   startScreen.classList.add('hidden');
+  // prepare screens
   playScreen.classList.remove('hidden');
   current = 0;
 
@@ -65,6 +94,8 @@ function startGame(){
 function showQuestion() {
   const q = gameQuestions[current];
   questionEl.textContent = q.q;
+  // also show the question in the page header where the title was
+  setHeaderQuestion(q.q);
   choicesEl.innerHTML = '';
 
   q.a.forEach((txt, i) => {
@@ -147,6 +178,8 @@ function endGame(won){
   // reset to start after short timeout
   setTimeout(()=>{
     playScreen.classList.add('hidden');
+    // restore original header/title
+    restoreHeader();
     startScreen.classList.remove('hidden');
   },1500);
 }
