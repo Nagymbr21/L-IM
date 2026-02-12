@@ -4,7 +4,7 @@ const questions = [
   {q: 'Melyik állat ugat?', a:['Macska','Kutya','Hal','Madár'], correct:1},
   {q: 'Melyik a Disney mese?', a:['A lármás család','Alvin és a mókusok','Katicabogár','Gumball csodálatos világa'], correct:2},
   {q: 'Melyik évszakban hullanak a levelek?', a:['Tavasz','Tél','Ősz','Nyár'], correct:2},
-  {q: 'Ha egy kakas tojást tojik a tetőre az merre gurul el?', a:['Jobbra','Balra','Előre','Sehová'], correct:3},
+  {q: 'Ha egy kakas tojást tojik a tetőre az merre gurul el?', a:['Jobbra','Balra','Előre','Sehova'], correct:3},
   {q: 'Mi nehezebb 1 kg toll vagy 1 kg vas?', a:['Toll','Egyenlő','Attól függ','Vas'], correct:1},
   {q: 'Melyik állat tud úszni és repülni is?', a:['Pingvin','Strucc','Gólya','Kacsa'], correct:3},
   {q: 'Melyik hónapba van 28 nap?', a:['Február','Június','December','Minden hónapban'], correct:3},
