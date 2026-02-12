@@ -12,7 +12,7 @@ const questions = [
   {q: 'Melyik madár nem tud repülni? ', a:['Gólya','Fecske','Strucc','Galamb'], correct:2},
   {q: 'Melyik kontinensen található Magyarország?', a:['Afrika','Ázsia','Ausztrália','Európa'], correct:3},
   {q: 'Mi Magyarország fővárosa?', a:['Bukarest','Budapest','Szolnok','Sopron'], correct:1},
-  {q: 'Melyik ország nem magyarország szomszédja?', a:['Szerbia','Ukrajna','Lengyelország','Szlovénia'], correct:2},
+  {q: 'Melyik ország nem Magyarország szomszédja?', a:['Szerbia','Ukrajna','Lengyelország','Szlovénia'], correct:2},
   {q: 'Mennyi 5×5?', a:['25','13','20','68'], correct:0},
   {q: 'Ha 13 éves vagy akkor mikor születtél?', a:['2012','2010','2019','2013'], correct:3},
   {q: 'Ki Shrek párja?', a:['Hamupipőke','Fióna','Csipkerózsika','Ariel'], correct:1},
@@ -21,6 +21,8 @@ const questions = [
 ];
 
 const money = ['100','200','300','500','1 000','2 000','4 000','8 000','16 000','32 000'];
+
+const MAX_QUESTIONS = 10;
 
 let current = 0;
 let gameQuestions = [];
@@ -53,6 +55,8 @@ function startGame(){
   // prepare randomized question order for this play session
   gameQuestions = questions.slice();
   shuffleArray(gameQuestions);
+  // limit number of questions per game
+  gameQuestions = gameQuestions.slice(0, MAX_QUESTIONS);
 
   init();
   showQuestion();
@@ -82,7 +86,7 @@ function showQuestion() {
   });
 
   updateLadder();
-  showStatus(`Kérdés ${current + 1}/${gameQuestions.length}`);
+  showStatus(`Kérdés ${current + 1}/${MAX_QUESTIONS}`);
 }
 
 function showStatus(text) {
