@@ -20,7 +20,7 @@ const questions = [
   {q: 'Az alábbi állatok közül melyik hüllő?', a:['Cápa','Kaméleon','Gólya','Kutya'], correct:1}
 ];
 
-const money = ['100','200','300','500','1 000','2 000','4 000','8 000','16 000','32 000'];
+const money = ['1 000','3 000','6 000','12 000','20 000','25 000','30 000','40 000','45 000','50 000'];
 
 const MAX_QUESTIONS = 10;
 
@@ -118,7 +118,12 @@ function showQuestion() {
     btn.textContent = `${label}. ${choice.txt}`;
     btn.dataset.orig = choice.idx; // original index to compare with q.correct
     btn.setAttribute('aria-label', `Válasz ${label}: ${choice.txt}`);
-    btn.addEventListener('click', () => selectAnswer(choice.idx, btn));
+    btn.addEventListener('click', () => {
+      // highlight the pressed answer to make it more visible
+      [...choicesEl.children].forEach((b) => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectAnswer(choice.idx, btn);
+    });
     choicesEl.appendChild(btn);
   });
 
@@ -186,17 +191,27 @@ function updateLadder() {
 // removed 50:50 lifeline — function cleaned up
 
 function endGame(won){
-  if(won) statusEl.textContent = 'Gratulálok — végigértél!';
-  else statusEl.textContent = `Nyert: ${money[Math.max(0,current-1)]} Ft`;
-  // reset to start after short timeout
-  setTimeout(()=>{
-    playScreen.classList.add('hidden');
-    // restore original header/title
-    restoreHeader();
-    // restore placeholder in the question card for the start screen
-    if (questionEl) questionEl.textContent = 'Kérdés szövege';
-    startScreen.classList.remove('hidden');
-  },1500);
+  if (won) statusEl.textContent = 'Gratulálok — végigértél! Nyomd a szóközt a kilépéshez';
+  else statusEl.textContent = `Nyert: ${money[Math.max(0, current - 1)]} Ft — Nyomd a szóközt a kilépéshez`;
+
+  // disable choices and wait for explicit Space key to exit back to start
+  disableChoices(true);
+
+  const onSpaceExit = (e) => {
+    if (e.code === 'Space' || e.key === ' ') {
+      document.removeEventListener('keydown', onSpaceExit);
+      playScreen.classList.add('hidden');
+      // restore original header/title
+      restoreHeader();
+      // restore placeholder in the question card for the start screen
+      if (questionEl) questionEl.textContent = 'Kérdés szövege';
+      startScreen.classList.remove('hidden');
+      disableChoices(false);
+    }
+  };
+
+  // attach listener: only Space will trigger exit
+  document.addEventListener('keydown', onSpaceExit);
 }
 
 function shuffleArray(arr) {
