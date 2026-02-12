@@ -7,8 +7,17 @@ const questions = [
   {q: 'Ha egy kakas tojást tojik a tetőre az merre gurul el?', a:['Jobbra','Balra','Előre','Sehová'], correct:3},
   {q: 'Mi nehezebb 1 kg toll vagy 1 kg vas?', a:['Toll','Egyenlő','Attól függ','Vas'], correct:1},
   {q: 'Melyik állat tud úszni és repülni is?', a:['Pingvin','Strucc','Gólya','Kacsa'], correct:3},
-  {q: 'Melyik hónapba van 28 nap?', a:['Február','Június','December','Minden hónapban'], correct:0},
-  {q: 'Mi az alapanyag a kenyér készítéséhez?', a:['Cukor','Liszt','Só','Vaj'], correct:1}
+  {q: 'Melyik hónapba van 28 nap?', a:['Február','Június','December','Minden hónapban'], correct:3},
+  {q: 'Hány lába van egy madárnak?', a:['1','0','2','3'], correct:2},
+  {q: 'Melyik madár nem tud repülni? ', a:['Gólya','Fecske','Strucc','Galamb'], correct:2},
+  {q: 'Melyik kontinensen található Magyarország?', a:['Afrika','Ázsia','Ausztrália','Európa'], correct:3},
+  {q: 'Mi Magyarország fővárosa?', a:['Bukarest','Budapest','Szolnok','Sopron'], correct:1},
+  {q: 'Melyik ország nem magyarország szomszédja?', a:['Szerbia','Ukrajna','Lengyelország','Szlovénia'], correct:2},
+  {q: 'Mennyi 5×5?', a:['25','13','20','68'], correct:0},
+  {q: 'Ha 13 éves vagy akkor mikor születtél?', a:['2012','2010','2019','2013'], correct:3},
+  {q: 'Ki Shrek párja?', a:['Hamupipőke','Fióna','Csipkerózsika','Ariel'], correct:1},
+  {q: 'Hányat lép egy veréb egy évben?', a:['100.000','500.000','Semennyit','10.000'], correct:2},
+  {q: 'Az alábbi állatok közül melyik hüllő?', a:['Cápa','Kaméleon','Gólya','Kutya'], correct:1}
 ];
 
 const money = ['100','200','300','500','1 000','2 000','4 000','8 000','16 000','32 000'];
