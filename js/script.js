@@ -27,7 +27,18 @@ const questions = [
   {q: 'Melyik ország fővárosa Róma?', a:['Franciaország','Spanyolország','Olaszország','Görögország'], correct:2},
   {q: 'Mennyi 144 osztva 12-vel?', a:['10','11','12','14'], correct:2},
   {q: 'Melyik csoportba tartozik a béka?', a:['Hüllők','Kétéltűek','Emlősök','Halak'], correct:1},
-  {q: 'Ki volt a „legnagyobb magyar”?', a:['Kossuth Lajos','Széchenyi István','Rákoczi Ferenc','Deák Ferenc'], correct:1}
+  {q: 'Ki volt a „legnagyobb magyar”?', a:['Kossuth Lajos','Széchenyi István','Rákoczi Ferenc','Deák Ferenc'], correct:1},
+  {q: 'Mi az a kama?', a:['Japán étel','Autó márka','Labdás játék','Mese'], correct:2},
+  {q: 'Mi volt aranyhajnak a kisállata?', a:['Kaméleon','Hernyó','Papagáj','Patkány'], correct:0},
+  {q: 'Elza melyik filmben  szerepel?', a:['Alíz csodaországban','Jégvarázs','Aranyhaj','Bambi'], correct:1},
+  {q: 'Mennyi 6 + 8?', a:['12','13','14','16'], correct:2},
+  {q: 'Mennyi 9 x 3?', a:['30','27','21','24'], correct:1},
+  {q: 'Mennyi 25 - 7?', a:['17','18','19','21'], correct:1},
+  {q: 'Mennyi 36 ÷ 6?', a:['11','6','4','8'], correct:1},
+  {q: 'Mennyi 15 + 9?', a:['23','24','27','26'], correct:1},
+  {q: 'Mennyi 4 x 7?', a:['24','32','28','30'], correct:2},
+  {q: 'Melyik szám páros?', a:['101','132','175','149'], correct:1},
+  {q: 'Melyik a legkisebb szám?', a:['121','114','132','115'], correct:1},
 ];
 
 const money = ['1 000','3 000','6 000','12 000','20 000','25 000','30 000','40 000','45 000','50 000'];
